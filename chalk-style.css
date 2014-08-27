@@ -1,3 +1,28 @@
+.chalk-list rect{
+	fill:none;
+	stroke:#a0a0a0;
+	stroke-width:1px;
+}
+
+.chalk-list text{
+	font-size: 10;
+	font-family: Courier new;
+	stroke:none;
+	fill:#a0a0a0;
+}
+
+.chalk-list-index text{
+	font-size: 10;
+	font-family: Courier new;
+	stroke:none;
+	fill: #ffffff;
+}
+
+.chalk-list-index rect{
+	stroke:none;
+	fill: #a0a0a0;
+}
+
 .chalk-text text {
 	font-size: 10;
 	font-family: Courier new;
@@ -7,6 +32,10 @@
 
 .chalk-text rect {
 	fill:#D7DF01;
-	stroke:#2E3B0B;
+	stroke:#868A08;
 	stroke-width:1px;
+}
+
+.chalk-list-item {
+	fill:#868A08;
 }

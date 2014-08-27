@@ -1,4 +1,4 @@
 import chalk
 
-L = range(0,5)
+L = range(0,123)
 chalk.draw(L)
