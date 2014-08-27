@@ -64,13 +64,14 @@ def draw_list_item(index, ds, x, y, dwg):
     g.add(gi)
     w += GLYPH_WIDTH*len(index)+2*PADDING
 
-    # # draw the value
-    # gt = dwg.g(class_=TEXT_CLASS)
-    # gt.add(dwg.rect(insert=(x+w, y), size=(GLYPH_WIDTH*len(str(ds))+2*PADDING, GLYPH_HEIGHT+2*PADDING)))
-    # gt.add(dwg.text(str(ds), insert=(x+PADDING, y+PADDING+GLYPH_HEIGHT)))
-    # g.add(gt)
-    # w += GLYPH_WIDTH*len(str(ds))+2*PADDING
+    # draw the value
+    gt = dwg.g(class_=TEXT_CLASS)
+    gt.add(dwg.rect(insert=(x+w, y), size=(GLYPH_WIDTH*len(str(ds))+2*PADDING, GLYPH_HEIGHT+2*PADDING)))
+    gt.add(dwg.text(str(ds), insert=(x+w+PADDING, y+PADDING+GLYPH_HEIGHT)))
+    g.add(gt)
+    w += GLYPH_WIDTH*len(str(ds))+2*PADDING
+    w += PADDING
 
     dwg.add(g)
 
-    return (4*GLYPH_WIDTH,2*PADDING+GLYPH_HEIGHT)
+    return (w, GLYPH_HEIGHT+2*PADDING)
