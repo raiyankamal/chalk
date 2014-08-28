@@ -18,9 +18,14 @@
 	fill: #606060;
 }
 
+
 .chalk-list-index rect{
 	stroke:none;
 	fill: #a0a0a0;
+}
+
+.chalk-list-item {
+	fill:#868A08;
 }
 
 .chalk-text text {
@@ -36,6 +41,13 @@
 	stroke-width:1px;
 }
 
-.chalk-list-item {
-	fill:#868A08;
+.chalk-int text {
+	font-size: 10;
+	font-family: Courier new;
+	stroke:none;
+	fill:#5E610B;
+}
+
+.chalk-int rect {
+	fill:#D7DF01;	
 }

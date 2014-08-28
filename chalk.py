@@ -13,6 +13,8 @@ def draw_ds(ds, x=0.0, y=0.0, dwg=None):
 
     if type(ds) is list:
         w,h = draw_list(ds, 'title', x, y, dwg)
+    elif type(ds) is int:
+        w,h = draw_int(ds, 'title', x, y, dwg)
 
     
     dwg.save()
@@ -36,10 +38,12 @@ def draw_list(ds, title, x, y, dwg):
         w = max(w, iw)
         h += ih+MARGIN
 
+    # the rectangle around the contents of the list
     h += PADDING
     r = dwg.rect(insert=(x, y), size=(w+2*PADDING, h))
     g.add(r)
 
+    # title of the list
     t = dwg.text(title, insert=(x+PADDING, y+PADDING+GLYPH_HEIGHT))
     g.add(t)
 
@@ -50,7 +54,7 @@ def draw_list(ds, title, x, y, dwg):
 
 def draw_list_item(index, ds, x, y, dwg):
 
-    print('drawing [%s] %s' % (index,ds))
+    print('drawing [%s]%s' % (index,ds))
 
     w = 0
     h = GLYPH_HEIGHT+2*PADDING
@@ -64,13 +68,26 @@ def draw_list_item(index, ds, x, y, dwg):
     g.add(gi)
     w += GLYPH_WIDTH*len(index)+2*PADDING
 
-    # draw the value
-    gt = dwg.g(class_=TEXT_CLASS)
-    gt.add(dwg.rect(insert=(x+w, y), size=(GLYPH_WIDTH*len(str(ds))+2*PADDING, GLYPH_HEIGHT+2*PADDING)))
-    gt.add(dwg.text(str(ds), insert=(x+w+PADDING, y+PADDING+GLYPH_HEIGHT)))
-    g.add(gt)
+    ww, _ = draw_int(ds, '', x+w, y, dwg)
+
+    w = w + ww
+
+    dwg.add(g)
+
+    return (w, GLYPH_HEIGHT+2*PADDING)
+
+def draw_int(ds, title, x, y, dwg):
+
+    print('drawing %s' % (ds))
+
+    w = 0
+    h = GLYPH_HEIGHT+2*PADDING
+
+    # draw the int
+    g = dwg.g(class_=INT_CLASS)
+    g.add(dwg.rect(insert=(x+w, y), size=(GLYPH_WIDTH*len(str(ds))+2*PADDING, GLYPH_HEIGHT+2*PADDING)))
+    g.add(dwg.text(str(ds), insert=(x+w+PADDING, y+PADDING+GLYPH_HEIGHT)))
     w += GLYPH_WIDTH*len(str(ds))+2*PADDING
-    w += PADDING
 
     dwg.add(g)
 
