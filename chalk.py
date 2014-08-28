@@ -3,23 +3,24 @@ import svgwrite
 from settings import *
 
 def draw(datastructure):
-    draw_ds(datastructure)
 
+    dwg = svgwrite.Drawing('chalk.svg', profile='tiny')
+    dwg.add_stylesheet(STYLE_SHEET, title="chalk-style")
 
-def draw_ds(ds, x=0.0, y=0.0, dwg=None):
-    if dwg is None:
-        dwg = svgwrite.Drawing('chalk.svg', profile='tiny')
-        dwg.add_stylesheet(STYLE_SHEET, title="chalk-style")
+    draw_ds(datastructure, dwg)
 
-    if type(ds) is list:
-        w,h = draw_list(ds, 'title', x, y, dwg)
-    elif type(ds) is int:
-        w,h = draw_int(ds, 'title', x, y, dwg)
-
-    
     dwg.save()
 
-def draw_list(ds, title, x, y, dwg):
+def draw_ds(ds, dwg, x=0.0, y=0.0):
+
+    if type(ds) is list:
+        w,h = draw_list(ds, dwg, 'title', x, y)
+    elif type(ds) is int:
+        w,h = draw_int(ds, dwg, 'title', x, y)
+
+    
+
+def draw_list(ds, dwg, title, x, y):
 
     g = dwg.g(class_=LIST_CLASS)
 
@@ -32,7 +33,7 @@ def draw_list(ds, title, x, y, dwg):
     for i,item in enumerate(ds):
         index = '%'+str(index_digits)+'d'
         index = index % i
-        iw, ih = draw_list_item(index, item, ix, iy, dwg)
+        iw, ih = draw_list_item(index, item, dwg, ix, iy)
         ix += 0  # no horizontal shift
         iy += ih + MARGIN
         w = max(w, iw)
@@ -52,7 +53,7 @@ def draw_list(ds, title, x, y, dwg):
     return (w,h)
 
 
-def draw_list_item(index, ds, x, y, dwg):
+def draw_list_item(index, ds, dwg, x, y):
 
     print('drawing [%s]%s' % (index,ds))
 
@@ -68,7 +69,7 @@ def draw_list_item(index, ds, x, y, dwg):
     g.add(gi)
     w += GLYPH_WIDTH*len(index)+2*PADDING
 
-    ww, _ = draw_int(ds, '', x+w, y, dwg)
+    ww, _ = draw_int(ds, dwg, '', x+w, y)
 
     w = w + ww
 
@@ -76,7 +77,7 @@ def draw_list_item(index, ds, x, y, dwg):
 
     return (w, GLYPH_HEIGHT+2*PADDING)
 
-def draw_int(ds, title, x, y, dwg):
+def draw_int(ds, dwg, title, x, y):
 
     print('drawing %s' % (ds))
 
