@@ -14,22 +14,22 @@ def draw(datastructure):
 def draw_ds(ds, dwg, x=0.0, y=0.0):
 
     if type(ds) is list:
-        w,h = draw_list(ds, dwg, 'title', x, y)
+        w,h = draw_list(ds, dwg, x, y)
     elif type(ds) is int:
-        w,h = draw_int(ds, dwg, 'title', x, y)
+        w,h = draw_int(ds, dwg, x, y)
     elif type(ds) is str:
         w,h = draw_str(ds, dwg, x, y)
 
     return (w, h)
 
-def draw_list(ds, dwg, title, x, y):
+def draw_list(ds, dwg, x, y):
 
     g = dwg.g(class_=LIST_CLASS)
 
-    w = GLYPH_WIDTH*len(title)
-    h = GLYPH_HEIGHT + 2*PADDING
+    w = 0  #GLYPH_WIDTH*len(title)
+    h = PADDING  #GLYPH_HEIGHT + 2*PADDING
     ix = x+PADDING
-    iy = y+2*PADDING+GLYPH_HEIGHT+MARGIN
+    iy = y+PADDING  #+GLYPH_HEIGHT+MARGIN
     index_digits = len(str(len(ds)-1))
 
     for i,item in enumerate(ds):
@@ -41,6 +41,9 @@ def draw_list(ds, dwg, title, x, y):
         w = max(w, iw)
         h += ih+MARGIN
 
+    if len(ds) > 0:
+        h -= MARGIN
+
     # the rectangle around the contents of the list
     h += PADDING
     w += 2*PADDING
@@ -48,8 +51,8 @@ def draw_list(ds, dwg, title, x, y):
     g.add(r)
 
     # title of the list
-    t = dwg.text(title, insert=(x+PADDING, y+PADDING+GLYPH_HEIGHT))
-    g.add(t)
+    #t = dwg.text(title, insert=(x+PADDING, y+PADDING+GLYPH_HEIGHT))
+    #g.add(t)
 
     dwg.add(g)
 
@@ -82,7 +85,7 @@ def draw_list_item(index, ds, dwg, x, y):
 
     return (w, h)
 
-def draw_int(ds, dwg, title, x, y):
+def draw_int(ds, dwg, x, y):
 
     print('drawing %s' % (ds))
 
