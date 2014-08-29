@@ -21,7 +21,7 @@
 
 .chalk-list-index rect{
 	stroke:none;
-	fill: #a0a0a0;
+	fill: #A4A4A4;
 }
 
 .chalk-list-item {
@@ -50,4 +50,15 @@
 
 .chalk-int rect {
 	fill:#D7DF01;	
+}
+
+.chalk-str text {
+	font-size: 10;
+	font-family: Courier new;
+	stroke:none;
+	fill:#086A87;
+}
+
+.chalk-str rect {
+	fill:#A9E2F3;
 }

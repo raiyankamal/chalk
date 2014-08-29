@@ -7,6 +7,7 @@ LIST_ITEM_CLASS = 'chalk-list-item'
 LIST_INDEX_CLASS = 'chalk-list-index'
 TEXT_CLASS = 'chalk-text'
 INT_CLASS = 'chalk-int'
+STR_CLASS = 'chalk-str'
 
 # Default padding inside the rectangles
 PADDING = 5

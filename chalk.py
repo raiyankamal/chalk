@@ -17,6 +17,8 @@ def draw_ds(ds, dwg, x=0.0, y=0.0):
         w,h = draw_list(ds, dwg, 'title', x, y)
     elif type(ds) is int:
         w,h = draw_int(ds, dwg, 'title', x, y)
+    elif type(ds) is str:
+        w,h = draw_str(ds, dwg, x, y)
 
     return (w, h)
 
@@ -89,6 +91,23 @@ def draw_int(ds, dwg, title, x, y):
 
     # draw the int
     g = dwg.g(class_=INT_CLASS)
+    g.add(dwg.rect(insert=(x+w, y), size=(GLYPH_WIDTH*len(str(ds))+2*PADDING, GLYPH_HEIGHT+2*PADDING)))
+    g.add(dwg.text(str(ds), insert=(x+w+PADDING, y+PADDING+GLYPH_HEIGHT)))
+    w += GLYPH_WIDTH*len(str(ds))+2*PADDING
+
+    dwg.add(g)
+
+    return (w, GLYPH_HEIGHT+2*PADDING)
+
+def draw_str(ds, dwg, x, y):
+
+    print('str:%s' % (ds))
+
+    w = 0
+    h = GLYPH_HEIGHT+2*PADDING
+
+    # draw the int
+    g = dwg.g(class_=STR_CLASS)
     g.add(dwg.rect(insert=(x+w, y), size=(GLYPH_WIDTH*len(str(ds))+2*PADDING, GLYPH_HEIGHT+2*PADDING)))
     g.add(dwg.text(str(ds), insert=(x+w+PADDING, y+PADDING+GLYPH_HEIGHT)))
     w += GLYPH_WIDTH*len(str(ds))+2*PADDING
