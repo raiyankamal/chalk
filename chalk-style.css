@@ -45,11 +45,11 @@
 	font-size: 10;
 	font-family: Courier new;
 	stroke:none;
-	fill:#5E610B;
+	fill:#088A08;
 }
 
 .chalk-int rect {
-	fill:#D7DF01;	
+	fill:#2EFE64;	
 }
 
 .chalk-str text {
@@ -60,5 +60,5 @@
 }
 
 .chalk-str rect {
-	fill:#A9E2F3;
+	fill:#A9D0FF;
 }
