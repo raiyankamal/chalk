@@ -18,7 +18,7 @@ def draw_ds(ds, dwg, x=0.0, y=0.0):
     elif type(ds) is int:
         w,h = draw_int(ds, dwg, 'title', x, y)
 
-    
+    return (w, h)
 
 def draw_list(ds, dwg, title, x, y):
 
@@ -41,7 +41,8 @@ def draw_list(ds, dwg, title, x, y):
 
     # the rectangle around the contents of the list
     h += PADDING
-    r = dwg.rect(insert=(x, y), size=(w+2*PADDING, h))
+    w += 2*PADDING
+    r = dwg.rect(insert=(x, y), size=(w, h))
     g.add(r)
 
     # title of the list
@@ -69,13 +70,15 @@ def draw_list_item(index, ds, dwg, x, y):
     g.add(gi)
     w += GLYPH_WIDTH*len(index)+2*PADDING
 
-    ww, _ = draw_int(ds, dwg, '', x+w, y)
+    # ww, _ = draw_int(ds, dwg, '', x+w, y)
+    ww, hh = draw_ds(ds, dwg, x+w, y)
 
     w = w + ww
+    h = max(h, hh)
 
     dwg.add(g)
 
-    return (w, GLYPH_HEIGHT+2*PADDING)
+    return (w, h)
 
 def draw_int(ds, dwg, title, x, y):
 
