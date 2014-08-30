@@ -2,14 +2,23 @@ import svgwrite
 
 from settings import *
 
-def draw(datastructure):
+def draw(datastructure, filename='chalk.svg'):
+    """
+    Creates SVG drawing of the given datastructure, and saves it.
+    If a filename is given then the resulting drawing is saved in that file,
+    otherwise the default chalk.svg is written.
+    """
 
-    dwg = svgwrite.Drawing('chalk.svg', profile='tiny')
-    dwg.add_stylesheet(STYLE_SHEET, title="chalk-style")
+    try:
+        dwg = svgwrite.Drawing(filename, profile='tiny')
+        dwg.add_stylesheet(STYLE_SHEET, title="chalk-style")
 
-    draw_ds(datastructure, dwg)
+        draw_ds(datastructure, dwg)
 
-    dwg.save()
+        dwg.save()
+    except:
+        import traceback
+        traceback.print_exc()
 
 def draw_ds(ds, dwg, x=0.0, y=0.0):
 
