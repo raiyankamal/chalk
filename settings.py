@@ -9,14 +9,12 @@ TEXT_CLASS = 'chalk-text'
 INT_CLASS = 'chalk-int'
 STR_CLASS = 'chalk-str'
 
-# Default padding inside the rectangles
+# Default padding inside the rectangle holding an entity
 PADDING = 5
 
-# Default margin between two rectangles
+# Default margin between two entities
 MARGIN = 2
 
-
-
-
+# Width and height of glyphs in the default font
 GLYPH_WIDTH = 10
 GLYPH_HEIGHT = 10
