@@ -23,7 +23,7 @@ def draw(datastructure, filename='chalk.svg'):
 def draw_ds(ds, dwg, x=0.0, y=0.0):
 
     if type(ds) is list:
-        w,h = draw_list(ds, dwg, x, y)
+        w,h = draw_ordered_ds(ds, dwg, x, y)
     elif type(ds) is int:
         w,h = draw_int(ds, dwg, x, y)
     elif type(ds) is str:
@@ -31,7 +31,7 @@ def draw_ds(ds, dwg, x=0.0, y=0.0):
 
     return (w, h)
 
-def draw_list(ds, dwg, x, y):
+def draw_ordered_ds(ds, dwg, x, y):
 
     g = dwg.g(class_=LIST_CLASS)
 
@@ -56,12 +56,12 @@ def draw_list(ds, dwg, x, y):
     # the rectangle around the contents of the list
     h += PADDING
     w += 2*PADDING
-    r = dwg.rect(insert=(x, y), size=(w, h))
+    r = None
+    if type(ds) is tuple:
+        r = dwg.rect(insert=(x, y), size=(w, h), rx=PADDING)
+    else:
+        r = dwg.rect(insert=(x, y), size=(w, h))
     g.add(r)
-
-    # title of the list
-    #t = dwg.text(title, insert=(x+PADDING, y+PADDING+GLYPH_HEIGHT))
-    #g.add(t)
 
     dwg.add(g)
 
