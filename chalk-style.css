@@ -22,11 +22,11 @@
 .chalk-list-index rect,
 .chalk-list-index polygon{
 	stroke:none;
-	fill: #A4A4A4;
+	fill: #E1E1C8;
 }
 
 .chalk-list-item {
-	fill:#868A08;
+	fill:#AF9B60;
 }
 
 .chalk-text text {
@@ -37,20 +37,20 @@
 }
 
 .chalk-text rect {
-	fill:#D7DF01;
 	stroke:none;
 	stroke-width:1px;
+	fill:#74E3Cf;
 }
 
 .chalk-int text {
 	font-size: 10;
 	font-family: Courier new;
 	stroke:none;
-	fill:#088A08;
+	fill:#007400;
 }
 
 .chalk-int rect {
-	fill:#2EFE64;	
+	fill:#88FF53;	
 }
 
 .chalk-str text {
