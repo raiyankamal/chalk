@@ -23,7 +23,11 @@ def draw(datastructure, filename='chalk.svg'):
 def draw_ds(ds, dwg, x=0.0, y=0.0):
 
     if type(ds) is list:
-        w,h = draw_ordered_ds(ds, dwg, x, y)
+        w,h = draw_iterable(ds, dwg, x, y)
+    elif type(ds) is tuple:
+        w,h = draw_iterable(ds, dwg, x, y)
+    elif type(ds) is dict:
+        w,h = draw_iterable(ds, dwg, x, y)
     elif type(ds) is int:
         w,h = draw_int(ds, dwg, x, y)
     elif type(ds) is str:
@@ -31,7 +35,7 @@ def draw_ds(ds, dwg, x=0.0, y=0.0):
 
     return (w, h)
 
-def draw_ordered_ds(ds, dwg, x, y):
+def draw_iterable(ds, dwg, x, y):
 
     g = dwg.g(class_=LIST_CLASS)
 
@@ -44,7 +48,10 @@ def draw_ordered_ds(ds, dwg, x, y):
     for i,item in enumerate(ds):
         index = '%'+str(index_digits)+'d'
         index = index % i
-        iw, ih = draw_list_item(index, item, dwg, ix, iy)
+        if type(ds) is dict:
+            iw, ih = draw_list_item(item, ds[item], ds, dwg, ix, iy)
+        else:
+            iw, ih = draw_list_item(index, item, ds, dwg, ix, iy)
         ix += 0  # no horizontal shift
         iy += ih + MARGIN
         w = max(w, iw)
@@ -68,7 +75,7 @@ def draw_ordered_ds(ds, dwg, x, y):
     return (w,h)
 
 
-def draw_list_item(index, ds, dwg, x, y):
+def draw_list_item(index, ds, parent_ds, dwg, x, y):
 
     print('drawing [%s]%s' % (index,ds))
 
@@ -83,7 +90,18 @@ def draw_list_item(index, ds, dwg, x, y):
     gi = dwg.g(class_=LIST_INDEX_CLASS)
     index_width = GLYPH_WIDTH*len(index) + PADDING + type_tag_margin
     index_height = GLYPH_HEIGHT + 2*PADDING
-    gi.add(dwg.rect(insert=(x, y), size=(index_width, index_height)))
+    
+    if type(parent_ds) is dict:
+        points = []
+        points.append((x+type_tag_margin,y))
+        points.append((x+index_width,y))
+        points.append((x+index_width,y+index_height))
+        points.append((x+type_tag_margin,y+index_height))
+        points.append((x,y+index_height/2))
+        gi.add(dwg.polygon(points=points))
+    else:
+        gi.add(dwg.rect(insert=(x, y), size=(index_width, index_height)))
+    
     gi.add(dwg.text(index, insert=(x+type_tag_margin, y+PADDING+GLYPH_HEIGHT)))
     g.add(gi)
     w += index_width

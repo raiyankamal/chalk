@@ -19,7 +19,8 @@
 }
 
 
-.chalk-list-index rect{
+.chalk-list-index rect,
+.chalk-list-index polygon{
 	stroke:none;
 	fill: #A4A4A4;
 }
