@@ -77,12 +77,16 @@ def draw_list_item(index, ds, dwg, x, y):
 
     g = dwg.g(class_=LIST_ITEM_CLASS)
 
+    type_tag_margin = GLYPH_HEIGHT
+
     # draw the index
     gi = dwg.g(class_=LIST_INDEX_CLASS)
-    gi.add(dwg.rect(insert=(x, y), size=(GLYPH_WIDTH*len(index)+2*PADDING, GLYPH_HEIGHT+2*PADDING)))
-    gi.add(dwg.text(index, insert=(x+PADDING, y+PADDING+GLYPH_HEIGHT)))
+    index_width = GLYPH_WIDTH*len(index) + PADDING + type_tag_margin
+    index_height = GLYPH_HEIGHT + 2*PADDING
+    gi.add(dwg.rect(insert=(x, y), size=(index_width, index_height)))
+    gi.add(dwg.text(index, insert=(x+type_tag_margin, y+PADDING+GLYPH_HEIGHT)))
     g.add(gi)
-    w += GLYPH_WIDTH*len(index)+2*PADDING
+    w += index_width
 
     # ww, _ = draw_int(ds, dwg, '', x+w, y)
     ww, hh = draw_ds(ds, dwg, x+w, y)
