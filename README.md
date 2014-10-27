@@ -1,6 +1,6 @@
 chalk
 =====
-Chalk is a Python library for vizualizing various Python data structures in SVG format. The following data structure and primitive types are supported in the current version:
+Chalk is a Python module for vizualizing various Python data structures in SVG format. The following data structure and primitive types are supported in the current version:
 
 * List
 * Tuple
