@@ -19,6 +19,9 @@ A list is created, then a visialization is created in the following example:
 	>>> my_list = [ x/2 if x % 2 == 0 else 3 * x + 1 for x in range(0,10) ]
 	>>> chalk.draw(my_list)
 
+The following drawing of my_list is created:
+![alt_tag](https://raw.github.com/raiyankamal/chalk/master/chalk.png)
+
 ### Output File ###
 
 The default output file is chalk.svg, saved at the current working directory. The output file can be specified by providing a value for the 'filename' parameter. The output is writtne in 'a.svg' in the following example:
