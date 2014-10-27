@@ -44,6 +44,8 @@ def draw_ds(ds, dwg, x=0.0, y=0.0):
         w,h = draw_int(ds, dwg, x, y)
     elif type(ds) is str:
         w,h = draw_str(ds, dwg, x, y)
+    elif hasattr(ds, '__dict__'):
+        w,h = draw_iterable(ds.__dict__, dwg, x,y)
 
     return (w, h)
 
