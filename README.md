@@ -30,3 +30,7 @@ The default output file is chalk.svg, saved at the current working directory. Th
 Chalk styles the output with a default Cascading Style Sheet file. The default CSS file is named chalk-style.css and can be found inside the package. You can assing your custom CSS file by setting the style_sheet parameter.
 
 	>>> chalk.draw(my_list, style_sheet='my-css.css')
+
+Dependencies
+------------
+Chalk requires [svgwrite](https://pypi.python.org/pypi/svgwrite/)

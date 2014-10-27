@@ -1,8 +1,10 @@
 import svgwrite
+import re
+import os
 
 from settings import *
 
-def draw_(datastructure, filename='chalk.svg'):
+def draw(datastructure, filename='chalk.svg', style_sheet=None):
     """
     Creates SVG drawing of the given datastructure, and saves it.
     If a filename is given then the resulting drawing is saved in that file,
@@ -10,8 +12,18 @@ def draw_(datastructure, filename='chalk.svg'):
     """
 
     try:
-        dwg = svgwrite.Drawing(filename, profile='tiny')
-        dwg.add_stylesheet(STYLE_SHEET, title="chalk-style")
+        dwg = svgwrite.Drawing(filename, profile='full')
+
+        style_sheet_content = ''
+        if style_sheet is None:
+            print 'css not given'
+            style_sheet = os.path.dirname(os.path.abspath(__file__)) + '/' + STYLE_SHEET
+        print 'style_sheet', style_sheet
+
+        with open(style_sheet, 'r') as css_file:
+            style_sheet_content = ''.join([ re.sub('\s', ' ', line) for line in css_file])
+        
+        dwg.defs.add( dwg.style(style_sheet_content))
 
         draw_ds(datastructure, dwg)
 
