@@ -20,6 +20,7 @@ A list is created, then a visialization is created in the following example:
 	>>> chalk.draw(my_list)
 
 The following drawing of my_list is created:
+
 ![alt_tag](https://raw.github.com/raiyankamal/chalk/master/chalk.png)
 
 ### Output File ###
