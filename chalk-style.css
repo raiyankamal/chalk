@@ -63,3 +63,9 @@
 .chalk-str rect {
 	fill:#A9D0FF;
 }
+
+rect.container {
+	fill: none;
+	stroke-width:1px;
+	stroke: #a0a0a0;
+}

@@ -25,7 +25,14 @@ def draw(datastructure, filename='chalk.svg', style_sheet=None):
         
         dwg.defs.add( dwg.style(style_sheet_content))
 
-        draw_ds(datastructure, dwg)
+        w,h = draw_ds(datastructure, dwg)
+
+        dwg.width = w
+        dwg.height = h
+
+        print "final image dimensions %s X %s" % (dwg.width, dwg.height)
+
+
 
         dwg.save()
     except:
@@ -79,9 +86,9 @@ def draw_iterable(ds, dwg, x, y):
     w += 2*PADDING
     r = None
     if type(ds) is tuple:
-        r = dwg.rect(insert=(x, y), size=(w, h), rx=PADDING)
+        r = dwg.rect(insert=(x, y), size=(w, h), rx=PADDING, class_='container')
     else:
-        r = dwg.rect(insert=(x, y), size=(w, h))
+        r = dwg.rect(insert=(x, y), size=(w, h), class_='container')
     g.add(r)
 
     dwg.add(g)
