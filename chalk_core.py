@@ -31,15 +31,14 @@ def draw(datastructure, filename='chalk.svg', style_sheet=None):
         dwg.defs.add( dwg.style(style_sheet_content))
 
         w,h = draw_ds(datastructure, dwg)
-
-        dwg.width = w
-        dwg.height = h
-
-        print "final image dimensions %s X %s" % (dwg.width, dwg.height)
-
-
+        
+        dwg.attribs['width'] = w
+        dwg.attribs['height'] = h
 
         dwg.save()
+
+        print "final image dimensions %s X %s" % (dwg.attribs['width'], dwg.attribs['height'])
+
     except:
         import traceback
         traceback.print_exc()
