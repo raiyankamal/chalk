@@ -25,8 +25,8 @@ The following drawing of my_list is created:
 
 Chalk can also visualize complex datastrucutres like this list consisting of different data types including nested lists:
 
->>> mixed_nested_list = [2, '22', [3], {'a': 'django', 'b': 'pyramid', 'x': 'python',}, [1, 59 ,2], (0,), (4,32,0,1,2), ['abc', 'bca', 'c', 'd']]
->>> chalk.draw(mixed_nested_list, filename='mixed_nested_list.svg')
+	>>> mixed_nested_list = [2, '22', [3], {'a': 'django', 'b': 'pyramid', 'x': 'python',}, [1, 59 ,2], (0,), (4,32,0,1,2), ['abc', 'bca', 'c', 'd']]
+	>>> chalk.draw(mixed_nested_list, filename='mixed_nested_list.svg')
 
 ![alt_tag](https://raw.github.com/raiyankamal/chalk/master/mixed_nested_list.png)
 
