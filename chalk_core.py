@@ -1,4 +1,9 @@
-import svgwrite
+try:
+    import svgwrite
+except:
+    print 'Please install svgwrite (http://pypi.python.org/pypi/svgwrite/)'
+    exit(1)
+
 import re
 import os
 
