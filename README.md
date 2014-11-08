@@ -23,6 +23,13 @@ The following drawing of my_list is created:
 
 ![alt_tag](https://raw.github.com/raiyankamal/chalk/master/chalk.png)
 
+Chalk can also visualize complex datastrucutres like this list consisting of different data types including nested lists:
+
+>>> mixed_nested_list = [2, '22', [3], {'a': 'django', 'b': 'pyramid', 'x': 'python',}, [1, 59 ,2], (0,), (4,32,0,1,2), ['abc', 'bca', 'c', 'd']]
+>>> chalk.draw(mixed_nested_list, filename='mixed_nested_list.svg')
+
+![alt_tag](https://raw.github.com/raiyankamal/chalk/master/mixed_nested_list.png)
+
 ### Output File ###
 
 The default output file is chalk.svg, saved at the current working directory. The output file can be specified by providing a value for the 'filename' parameter. The output is writtne in 'a.svg' in the following example:
